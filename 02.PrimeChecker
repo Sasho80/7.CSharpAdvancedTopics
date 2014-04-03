@@ -1,0 +1,42 @@
+using System;
+using System.Numerics;
+
+class Prime
+{
+    static void Main()
+    {
+        Console.Write("Enter a positive integer number: ");
+        BigInteger number =BigInteger.Parse(Console.ReadLine());
+        Console.WriteLine("\n");
+
+        IsPrime(number);
+    }
+        static void IsPrime(BigInteger num)
+        {
+            if (num < 0)
+            {
+                Console.WriteLine("Invalid exception!");
+                Console.WriteLine("\n");
+                return;
+            }
+            bool prime = true;
+            if (num == 1 || num == 0)
+            {
+                prime = false;
+            }
+            double divider = 2;
+            double maxDivider = Math.Sqrt((double)num);
+            while (prime && (divider <= maxDivider))
+            {
+                if ((double)num % divider == 0)
+                {
+                    prime = false;
+                }
+                divider++;
+            }
+            Console.WriteLine("Is Prime? {0}", prime);
+            Console.WriteLine();
+        }
+    
+}
+
