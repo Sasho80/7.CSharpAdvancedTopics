@@ -1,0 +1,63 @@
+using System;
+
+class Fibonacci
+{
+    static void Main()
+    {
+        Console.Write("Enter integer number:");
+        int countInt = int.Parse(Console.ReadLine());
+        Console.WriteLine("\n");
+        int numInt = 1;
+        bool greaterCount = (countInt >= 0);
+        bool equalCount1 = (countInt == 0);
+        bool greaterCount2 = (countInt == 1);
+        bool greaterCount3 = (countInt > 1);
+
+        if (greaterCount)
+        {
+            if (equalCount1)
+            {
+                Console.Write("{0}", numInt);
+                Console.WriteLine("\n");
+                return;
+            }
+            else if (greaterCount2)
+            {
+                Console.Write("{0}", numInt);
+                Console.WriteLine("\n");
+                return;
+            }
+            else if (greaterCount3)
+            {
+                PrintFibonacci(countInt);
+            }
+            Console.WriteLine("\n");
+        }
+        else
+        {
+            Console.WriteLine("Invalid range!");
+        }
+        Console.WriteLine("\n");
+
+    }
+    static void PrintFibonacci(int count)
+    {
+        int x3 = 1;        //Third member of the Fibonacci line.
+        int x2 = 0;     //Second member of the Fibonacci line.
+        int sumX = 0;
+        for (int i = 1; i <= count; i++)
+        {
+            sumX = x3 + x2;
+            //the sum of the two terms in Fibonacci lines.
+            x2 = x3;
+            x3 = sumX;
+        }
+        Console.WriteLine(sumX);
+        Console.WriteLine();
+    }
+}
+
+
+
+
+
