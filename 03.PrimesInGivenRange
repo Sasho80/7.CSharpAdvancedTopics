@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+
+class Primes
+{
+     static void Main()
+    {
+        Console.Write("Enter start number for prime:");
+        int startN=int.Parse(Console.ReadLine());
+        Console.WriteLine();
+        Console.Write("Enter start number for prime:");
+        int endN=int.Parse(Console.ReadLine());
+        Console.WriteLine();
+
+        List<int>Primes= FindPrimesInRange( startN, endN );
+        Console.WriteLine( string.Join(", ", Primes));
+        Console.WriteLine("\n");
+    }
+    static List<int> FindPrimesInRange(int startNum, int endNum)
+    {
+        if (startNum<0||endNum<0)
+        {
+            throw new ArgumentOutOfRangeException("Number can't be negative!");
+        }
+
+        List<int> PrimesList = new List<int>();
+
+        if (startNum == 0)
+        {
+            startNum = startNum + 2;
+        }
+        if (startNum == 1)
+        {
+            startNum = startNum + 1;
+        }
+         for (int i = startNum; i <=endNum; i++)
+			{
+                bool prime = true;
+                double divider = 2;
+                double maxDivider = Math.Sqrt((double)i);
+                while (prime && (divider <= maxDivider))
+                {
+                    if ((double)i % divider == 0)
+                    {
+                        prime = false;
+                        divider++;
+                        break;
+                    }
+                    divider++;
+			     }
+                if (prime)
+                {
+                    PrimesList.Add(i);
+                }
+             }
+           return PrimesList;
+    }
+
+}
+
