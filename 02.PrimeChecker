@@ -9,20 +9,15 @@ class Prime
         BigInteger number =BigInteger.Parse(Console.ReadLine());
         Console.WriteLine("\n");
 
-        IsPrime(number);
+        IsPrimeCheck(number);
     }
-        static void IsPrime(BigInteger num)
+        static bool IsPrime(BigInteger num)
         {
-            if (num < 0)
-            {
-                Console.WriteLine("Invalid exception!");
-                Console.WriteLine("\n");
-                return;
-            }
             bool prime = true;
             if (num == 1 || num == 0)
             {
                 prime = false;
+                return prime;
             }
             double divider = 2;
             double maxDivider = Math.Sqrt((double)num);
@@ -34,8 +29,22 @@ class Prime
                 }
                 divider++;
             }
-            Console.WriteLine("Is Prime? {0}", prime);
-            Console.WriteLine();
+            return prime;
+        }
+        static void IsPrimeCheck(BigInteger num)
+        {
+            bool prime = IsPrime(num);
+            if (num < 0)
+            {
+                Console.WriteLine("Invalid exception!");
+                Console.WriteLine("\n");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Is Prime? {0}", prime);
+                Console.WriteLine("\n");
+            }
         }
     
 }
