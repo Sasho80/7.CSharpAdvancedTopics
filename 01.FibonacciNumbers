@@ -21,7 +21,7 @@ class Fibonacci
         int sumX = 0;
         if (count < 0)
         {
-            throw new ArgumentOutOfRangeException("Count cannot be negative!");
+            throw new ArgumentOutOfRangeException("Number cannot be negative!");
         }
         else if (count == 0)
         {
