@@ -9,7 +9,7 @@ class Prime
         BigInteger number =BigInteger.Parse(Console.ReadLine());
         Console.WriteLine("\n");
 
-        IsPrimeCheck(number);
+        CheckAndPrint(number);
     }
         static bool IsPrime(BigInteger num)
         {
@@ -31,12 +31,12 @@ class Prime
             }
             return prime;
         }
-        static void IsPrimeCheck(BigInteger num)
+        static void CheckAndPrint(BigInteger num)
         {
             bool prime = IsPrime(num);
             if (num < 0)
             {
-                Console.WriteLine("Invalid exception!");
+                Console.WriteLine("Num cannot be negative!");
                 Console.WriteLine("\n");
                 return;
             }
