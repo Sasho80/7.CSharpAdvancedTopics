@@ -1,0 +1,42 @@
+using System;
+using System.Globalization;
+using System.Threading;
+
+class Dates
+{
+    static void Main()
+    {
+        Console.Write("Enter first and second date in the format dd:MM:yyyy:");
+        string dateFirst =Console.ReadLine();
+        Console.WriteLine("\n");
+        string dateSecond =Console.ReadLine();
+        Console.WriteLine("\n");
+
+       double days= CalculateDays(dateFirst, dateSecond);
+        Console.WriteLine(days);
+        Console.WriteLine("\n");
+    }
+
+    static double CalculateDays(string dateF, string dateS)
+    {
+        DateTime resultF;
+        if (!DateTime.TryParseExact(dateF, "dd.MM.yyyy", 
+            CultureInfo.CurrentCulture, 
+            DateTimeStyles.None, out resultF))
+        {
+            throw new ArgumentOutOfRangeException("The date is not in the right format!");
+        }
+        DateTime  resultS;
+        if (!DateTime.TryParseExact(dateS, "dd.MM.yyyy", 
+            CultureInfo.CurrentCulture, 
+            DateTimeStyles.None, out resultS))
+        {
+            throw new ArgumentOutOfRangeException("The date is not in the right format!");
+        }
+       TimeSpan diff= (resultS-resultF);
+
+       double result = diff.TotalDays;
+        return result;
+    }
+}
+
