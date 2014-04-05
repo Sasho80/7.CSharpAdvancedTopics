@@ -1,0 +1,33 @@
+using System;
+
+class Sorting
+{
+    static void Main()
+    {
+        Console.Write("Enter the number of n numbers:");
+        int numN = int.Parse(Console.ReadLine());
+        Console.WriteLine("\n");
+
+        int[] numbers = new int[numN];
+
+        Console.WriteLine("Enter {0} numbers:",numN);
+        for (int i = 0; i < numN; i++)
+        {
+            numbers[i] = int.Parse(Console.ReadLine());
+        }
+        Console.WriteLine("\n");
+        Array.Sort(numbers);
+        PrintNumbers(numbers);
+    }
+    static int[] PrintNumbers(params int[] numbers)
+    {
+        foreach (var item in numbers)
+        {
+            Console.WriteLine("{0}", item);
+        }
+        Console.WriteLine("\n");
+        return numbers;
+
+    }
+}
+
