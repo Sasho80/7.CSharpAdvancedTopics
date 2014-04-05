@@ -9,7 +9,7 @@ class Prime
         BigInteger number =BigInteger.Parse(Console.ReadLine());
         Console.WriteLine("\n");
 
-        CheckAndPrint(number);
+        Print(number);
     }
         static bool IsPrime(BigInteger num)
         {
@@ -31,7 +31,7 @@ class Prime
             }
             return prime;
         }
-        static void CheckAndPrint(BigInteger num)
+        static void Print(BigInteger num)
         {
             bool prime = IsPrime(num);
             if (num < 0)
