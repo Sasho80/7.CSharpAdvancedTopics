@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Lists
+{
+    static void Main()
+    {
+        Console.Write("Enter the number of numbers in the first list:");
+        int firstN = int.Parse(Console.ReadLine());
+        Console.WriteLine("\n");
+        Console.Write("Enter the number of numbers in the second list:");
+        int secondN = int.Parse(Console.ReadLine());
+        Console.WriteLine("\n");
+
+        List<int> firstList = new List<int>();
+        Console.WriteLine("Enter n elements of first List:",firstN);
+        for (int i = 0; i < firstN; i++)
+        {
+            int numInt = int.Parse(Console.ReadLine());
+            firstList.Add(numInt);
+        }
+        Console.WriteLine("\n");
+        List<int> secondList = new List<int>();
+        Console.WriteLine("Enter n elements of second List:",secondN);
+        for (int i = 0; i < secondN; i++)
+        {
+            int numInt = int.Parse(Console.ReadLine());
+            secondList.Add(numInt);
+        }
+        Console.WriteLine("\n");
+        List<int> combineList = Combine(firstList,secondList);
+        IEnumerable<int> distinctCombine = combineList.Distinct();
+        //Method returns an unordered sequence that contains no duplicate values. 
+        PrintList(distinctCombine);
+    }
+     static List<int> Combine(
+                List<int> firstList, List<int> secondList)
+    {
+        
+        List<int> combine = new List<int>();
+
+        combine.AddRange(firstList);
+
+        foreach (var item in secondList)
+        {
+            if (!combine.Contains(item))
+            {
+                combine.Add(item);
+            }
+        }
+        combine.Sort();
+        return combine;
+    }
+     static void PrintList(IEnumerable<int> distinctCombine)
+     {
+         foreach (var item in distinctCombine)
+         {
+             Console.Write(item);
+             Console.Write(" ");
+         }
+         Console.WriteLine("\n");
+     }
+   
+}
+
