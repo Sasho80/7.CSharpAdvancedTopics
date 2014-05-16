@@ -6,7 +6,7 @@ class Dates
 {
     static void Main()
     {
-        Console.Write("Enter first and second date in the format dd:MM:yyyy:");
+        Console.Write("Enter first and second date in the format d:MM:yyyy:");
         string dateFirst =Console.ReadLine();
         Console.WriteLine("\n");
         string dateSecond =Console.ReadLine();
@@ -20,14 +20,14 @@ class Dates
     static double CalculateDays(string dateF, string dateS)
     {
         DateTime resultF;
-        if (!DateTime.TryParseExact(dateF, "dd.MM.yyyy", 
+        if (!DateTime.TryParseExact(dateF, "d.MM.yyyy", 
             CultureInfo.CurrentCulture, 
             DateTimeStyles.None, out resultF))
         {
             throw new ArgumentOutOfRangeException("The date is not in the right format!");
         }
         DateTime  resultS;
-        if (!DateTime.TryParseExact(dateS, "dd.MM.yyyy", 
+        if (!DateTime.TryParseExact(dateS, "d.MM.yyyy", 
             CultureInfo.CurrentCulture, 
             DateTimeStyles.None, out resultS))
         {
