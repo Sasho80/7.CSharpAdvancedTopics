@@ -1,33 +1,22 @@
 using System;
+using System.Collections.Generic;
 
-class Sorting
+class SortingNumbers
 {
     static void Main()
     {
-        Console.Write("Enter the number of n numbers:");
-        int numN = int.Parse(Console.ReadLine());
-        Console.WriteLine("\n");
-
-        int[] numbers = new int[numN];
-
-        Console.WriteLine("Enter {0} numbers:",numN);
-        for (int i = 0; i < numN; i++)
+        int n = int.Parse(Console.ReadLine());
+        List<int> Numbers = new List<int>();
+        for (int i = 0; i <n; i++)
         {
-            numbers[i] = int.Parse(Console.ReadLine());
+            int j = int.Parse(Console.ReadLine());
+            Numbers.Add(j);
         }
-        Console.WriteLine("\n");
-        Array.Sort(numbers);
-        PrintNumbers(numbers);
-    }
-    static int[] PrintNumbers(params int[] numbers)
-    {
-        foreach (var item in numbers)
+        Numbers.Sort();
+        foreach (var item in Numbers)
         {
-            Console.WriteLine("{0}", item);
+            Console.WriteLine(item);
         }
-        Console.WriteLine("\n");
-        return numbers;
-
     }
 }
 
