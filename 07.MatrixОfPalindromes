@@ -1,32 +1,20 @@
 using System;
 
-class MatrixOfStrings
+class MatrixOfPalindromes
 {
     static void Main()
     {
-        Console.Write("Enter the height and width for matrix:");
-        int height = int.Parse(Console.ReadLine());
-        int width = int.Parse(Console.ReadLine());
-
-        string[,] matrix = new string[height,width];
-
-        for (int row = 0; row < height; row++)
+        int row = int.Parse(Console.ReadLine());
+        int col = int.Parse(Console.ReadLine());
+        for (char i = 'a'; i < row+'a'; i++)
         {
-            for (int col = 0; col < width; col++)
+            for (char j = i; j < col+i; j++)
             {
-                    matrix[row, col] =
-                    "" + (char)('a' + row)+ (char)('a'+row + col)+ (char)('a' + row);
+                
+                Console.Write("{0}{1}{2}"+" ",i,j,i);   
             }
             Console.WriteLine();
         }
-        for (int row = 0; row < height; row++)
-        {
-            for (int col = 0; col < width; col++)
-            {
-                Console.Write("{0}", matrix[row, col] + " ");
-            }
-            Console.WriteLine();
-        }
-        Console.WriteLine("\n");
     }
 }
+
