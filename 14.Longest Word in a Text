@@ -1,0 +1,24 @@
+using System;
+
+class LongestWordInAText
+{
+    static void Main()
+    {
+        string[] text = Console.ReadLine().Split(new char[] { ',',';','-',':','.',' ' },
+            StringSplitOptions.RemoveEmptyEntries);
+        string longestWord = text[0];
+        for (int j = 1; j < text.Length; j++)
+        {
+            if (longestWord.Length>text[j].Length)
+            {
+                continue;
+            }
+            else
+            {
+                longestWord = text[j];
+            }
+        }
+        Console.WriteLine(longestWord);
+    }
+}
+
