@@ -1,51 +1,32 @@
 using System;
-using System.Numerics;
 
-class Prime
+class PrimeChecker
 {
     static void Main()
     {
-        Console.Write("Enter a positive integer number: ");
-        BigInteger number =BigInteger.Parse(Console.ReadLine());
-        Console.WriteLine("\n");
-
-        Print(number);
+        long n = long.Parse(Console.ReadLine());
+        bool isPrime = true;
+        Console.WriteLine(CheckPrime(isPrime, n));
     }
-        static bool IsPrime(BigInteger num)
+    public static bool CheckPrime(bool Prime, long num)
+    {
+        if (num == 1 ||num==0)
         {
-            bool prime = true;
-            if (num == 1 || num == 0)
+            Prime = false;
+            return Prime;
+        }
+        else 
+        {
+            for (int i = 2; i <= Math.Sqrt(num); i++)
             {
-                prime = false;
-                return prime;
-            }
-            double divider = 2;
-            double maxDivider = Math.Sqrt((double)num);
-            while (prime && (divider <= maxDivider))
-            {
-                if ((double)num % divider == 0)
+                if (num % i == 0 && num != i&&num!=2)
                 {
-                    prime = false;
+                    Prime = false;
+                    break;
                 }
-                divider++;
             }
-            return prime;
+            return Prime;
         }
-        static void Print(BigInteger num)
-        {
-            bool prime = IsPrime(num);
-            if (num < 0)
-            {
-                Console.WriteLine("Number cannot be negative!");
-                Console.WriteLine("\n");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Is Prime? {0}", prime);
-                Console.WriteLine("\n");
-            }
-        }
-    
+    }
 }
 
