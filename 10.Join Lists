@@ -1,69 +1,68 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-class Lists
+class JoinLists
 {
     static void Main()
     {
-        Console.Write("Enter the number of numbers in the first list:");
-        int firstN = int.Parse(Console.ReadLine());
-        Console.WriteLine("\n");
-        Console.Write("Enter the number of numbers in the second list:");
-        int secondN = int.Parse(Console.ReadLine());
-        Console.WriteLine("\n");
-
-        List<int> firstList = new List<int>();
-        Console.WriteLine("Enter {0} elements of first List:",firstN);
-        for (int i = 0; i < firstN; i++)
+        string[]num1 = Console.ReadLine().Split();
+        for (int i = 0; i < num1.Length - 1; i++)
         {
-            int numInt = int.Parse(Console.ReadLine());
-            firstList.Add(numInt);
-        }
-        Console.WriteLine("\n");
-        List<int> secondList = new List<int>();
-        Console.WriteLine("Enter {0} elements of second List:",secondN);
-        for (int i = 0; i < secondN; i++)
-        {
-            int numInt = int.Parse(Console.ReadLine());
-            secondList.Add(numInt);
-        }
-        Console.WriteLine("\n");
-        List<int> combineList = Combine(firstN,secondN,firstList,secondList);
-        IEnumerable<int> distinctCombine = combineList.Distinct();
-        //Method returns an unordered sequence that contains no duplicate values. 
-        PrintList(distinctCombine);
-    }
-     static List<int> Combine(int first,int second,
-                List<int> firstList, List<int> secondList)
-    {
-        if (first <= 0 || second <= 0)
-        {
-            throw new ArgumentOutOfRangeException("Number of numbers can not be negative or zero!");
-        }
-        List<int> combine = new List<int>();
-
-        combine.AddRange(firstList);
-
-        foreach (var item in secondList)
-        {
-            if (!combine.Contains(item))
+            for (int j = i + 1; j < num1.Length; j++)
             {
-                combine.Add(item);
+                if (num1[i] == num1[j])
+                {
+                    num1[j] = "\0";
+                }
             }
         }
-        combine.Sort();
-        return combine;
+        List<int> Numbers1 = new List<int>();
+        for (int i = 0; i < num1.Length; i++)
+        {
+            if (num1[i]=="\0")
+            {
+                continue;
+            }
+            int n = Convert.ToInt32(num1[i]);
+            Numbers1.Add(n);
+        }
+        string[] num2 = Console.ReadLine().Split();
+        List<int> Numbers2 = new  List<int>();
+        for (int i = 0; i < num2.Length; i++)
+        {
+            int n = Convert.ToInt32(num2[i]);
+            Numbers2.Add(n);
+        }
+        List<int> NumbersCommon = new List<int>();
+        foreach (var item in Numbers1)
+        {
+            if (Numbers2.Contains(item))
+            {
+                    continue;
+            }
+            else
+            {
+                NumbersCommon.Add(item);
+
+            }
+        }
+        foreach (var num in Numbers2)
+        {
+            if (NumbersCommon.Contains(num))
+            {
+                continue;
+            }
+            else
+            {
+                NumbersCommon.Add(num);
+            }
+        }
+        NumbersCommon.Sort();
+        foreach (var item in NumbersCommon)
+        {
+            Console.Write(item + " ");
+        }
+        Console.WriteLine();
     }
-     static void PrintList(IEnumerable<int> distinctCombine)
-     {
-         foreach (var item in distinctCombine)
-         {
-             Console.Write(item);
-             Console.Write(" ");
-         }
-         Console.WriteLine("\n");
-     }
-   
 }
 
