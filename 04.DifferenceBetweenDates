@@ -1,42 +1,17 @@
 using System;
 using System.Globalization;
-using System.Threading;
 
-class Dates
+class DifferenceBetweenDates
 {
     static void Main()
     {
-        Console.Write("Enter first and second date in the format d:MM:yyyy:");
-        string dateFirst =Console.ReadLine();
-        Console.WriteLine("\n");
-        string dateSecond =Console.ReadLine();
-        Console.WriteLine("\n");
-
-       double days= CalculateDays(dateFirst, dateSecond);
-        Console.WriteLine(days);
-        Console.WriteLine("\n");
-    }
-
-    static double CalculateDays(string dateF, string dateS)
-    {
-        DateTime resultF;
-        if (!DateTime.TryParseExact(dateF, "d.MM.yyyy", 
-            CultureInfo.CurrentCulture, 
-            DateTimeStyles.None, out resultF))
-        {
-            throw new ArgumentOutOfRangeException("The date is not in the right format!");
-        }
-        DateTime  resultS;
-        if (!DateTime.TryParseExact(dateS, "d.MM.yyyy", 
-            CultureInfo.CurrentCulture, 
-            DateTimeStyles.None, out resultS))
-        {
-            throw new ArgumentOutOfRangeException("The date is not in the right format!");
-        }
-       TimeSpan diff= (resultS-resultF);
-
-       double result = diff.TotalDays;
-        return result;
+        Console.WriteLine("Enter two dates in format(d.M.yyyy):");
+        DateTime firstDate = DateTime.ParseExact(Console.ReadLine(), "d.M.yyyy", CultureInfo.InvariantCulture);
+        DateTime secondDate = DateTime.ParseExact(Console.ReadLine(), "d.M.yyyy", CultureInfo.InvariantCulture);
+        TimeSpan ts = secondDate - firstDate;
+        // Difference in days.
+        int differenceInDays = ts.Days;
+        Console.WriteLine("Difference in days: {0} ", differenceInDays);
     }
 }
 
