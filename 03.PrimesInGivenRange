@@ -1,60 +1,47 @@
 using System;
 using System.Collections.Generic;
 
-class Primes
+class PrimesInGivenRange
 {
-     static void Main()
+    static void Main()
     {
-        Console.Write("Enter start number for prime:");
-        int startN=int.Parse(Console.ReadLine());
+        int startNum = int.Parse(Console.ReadLine());
+        int endNum = int.Parse(Console.ReadLine());
+        List <int>Primes=FindPrimesInRange(startNum, endNum);
+        Console.Write(string.Join(", ", Primes));
         Console.WriteLine();
-        Console.Write("Enter start number for prime:");
-        int endN=int.Parse(Console.ReadLine());
-        Console.WriteLine();
-
-        List<int>Primes= FindPrimesInRange( startN, endN );
-        Console.WriteLine( string.Join(", ", Primes));
-        Console.WriteLine("\n");
     }
-    static List<int> FindPrimesInRange(int startNum, int endNum)
+    public static List <int> FindPrimesInRange(int n, int m)
     {
-        if (startNum<0||endNum<0)
+        List<int> primesNum = new List<int>();
+        if (n<0||m<0)
         {
-            throw new ArgumentOutOfRangeException("Number can't be negative!");
+            throw new ArgumentOutOfRangeException();
         }
-
-        List<int> PrimesList = new List<int>();
-
-        if (startNum == 0)
+        else
         {
-            startNum = startNum + 2;
-        }
-        if (startNum == 1)
-        {
-            startNum = startNum + 1;
-        }
-         for (int i = startNum; i <=endNum; i++)
-			{
-                bool prime = true;
-                double divider = 2;
-                double maxDivider = Math.Sqrt((double)i);
-                while (prime && (divider <= maxDivider))
+            for (int i = n; i <=m; i++)
+            {
+                bool isPrime = true;
+                if (i==0||i==1)
                 {
-                    if ((double)i % divider == 0)
+                    continue;
+                }
+                for (int j = 2; j <= Math.Sqrt(i); j++)
+                {
+                    if (i % j == 0 && i != j && i != 2)
                     {
-                        prime = false;
-                        divider++;
+                        isPrime = false;
                         break;
                     }
-                    divider++;
-			     }
-                if (prime)
+                }     
+                if (isPrime)
                 {
-                    PrimesList.Add(i);
+                     primesNum.Add(i);
                 }
-             }
-           return PrimesList;
+            }
+            return primesNum;
+        }
     }
-
 }
 
