@@ -37,6 +37,7 @@ class StudentCables
                 numUsedCables = numUsedCables + 1;
             }
         }
+        cablesJoint = cablesJoint - 3 * (numUsedCables - 1);
         if (n==1)
         {
             Console.WriteLine("{0}",cablesJoint/ 504);
@@ -44,8 +45,8 @@ class StudentCables
         }
         else
         {
-            Console.WriteLine("{0}", (cablesJoint - (2*numUsedCables)) / 504);
-            Console.WriteLine("{0}", (cablesJoint - (2 * numUsedCables)) - (((cablesJoint - (2 * numUsedCables)) / 504) * 504));
+            Console.WriteLine("{0}", cablesJoint / 504);
+            Console.WriteLine("{0}", cablesJoint - ((cablesJoint / 504) * 504));
         }
     }
 }
