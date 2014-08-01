@@ -1,0 +1,52 @@
+using System;
+
+class StudentCables
+{
+    static void Main()
+    {
+        int n= int.Parse(Console.ReadLine());
+        int []cableLenght=new int[n];
+        string[] measure = new string[n];
+        int cablesJoint = 0;
+        int numUsedCables = 0;
+        for (int i = 0; i < n; i++)
+        {
+            cableLenght[i] = int.Parse(Console.ReadLine());
+            measure[i] = Console.ReadLine();
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if (measure[i]=="meters")
+            {
+                cableLenght[i] = cableLenght[i] * 100;
+            }
+            else
+            {
+                continue;
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if (cableLenght[i]<20)
+            {
+                continue;
+            }
+            else
+            {
+                cablesJoint = cablesJoint + cableLenght[i];
+                numUsedCables = numUsedCables + 1;
+            }
+        }
+        if (n==1)
+        {
+            Console.WriteLine("{0}",cablesJoint/ 504);
+            Console.WriteLine("{0}",cablesJoint-((cablesJoint / 504)*504));
+        }
+        else
+        {
+            Console.WriteLine("{0}", (cablesJoint - (2*numUsedCables)) / 504);
+            Console.WriteLine("{0}", (cablesJoint - (2 * numUsedCables)) - (((cablesJoint - (2 * numUsedCables)) / 504) * 504));
+        }
+    }
+}
+
