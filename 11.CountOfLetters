@@ -5,60 +5,28 @@ class CountOfLetters
 {
     static void Main()
     {
-        string[] character = Console.ReadLine().Split();
-        int countLetter=1;
-        char[] character1 = new char[character.Length];
-        char[] repeatCharacter = new char[character.Length];
-        List<char> Character1 = new List<char>();
-        for (int i = 0; i < character.Length; i++)
+        string[] symbol = Console.ReadLine().Split();
+        IDictionary<string, int> letters =
+                 new SortedDictionary<string, int>();
+        foreach (string letter in symbol)
         {
-            char n = Convert.ToChar(character[i]);
-            character1[i] = n;
-            Character1.Add(n);
-        }
-        for (int i = 0; i < character.Length - 1; i++)
-        {
-            for (int j = i + 1; j < character.Length; j++)
-            {
-                if (character[i] == character[j])
-                {
-                    character[j] = "\0";
-                    repeatCharacter[i] = Convert.ToChar(character[i]);
-                }
-            }
-        }
-        List<char> Character2 = new List<char>();
-        for (int i = 0; i < repeatCharacter.Length; i++)
-        {
-            Character2.Add(repeatCharacter[i]);
-        }
-        foreach ( var item in Character1)
-        {
-            if (Character2.Contains(item))
-	        {
-                continue;
-	        }
-            else
-            {
-                Character2.Add(item);
-            }
-        }
-        Character2.Sort();
-        foreach (var item in Character2)
-        {
-            if (item=='\0')
+            if (string.IsNullOrEmpty(letter.Trim()))
             {
                 continue;
             }
-            countLetter=0;
-            for (int j=0; j <character.Length; j++)
-            { 
-                if (item==character1[j])
-                {
-                    countLetter++;
-                }
+            int count;
+            if (!letters.TryGetValue(letter, out count))
+            {
+                count = 0;
             }
-            Console.WriteLine("{0}-->{1}",item,countLetter);
+            letters[letter] = count + 1;
+        }
+        foreach (KeyValuePair<string, int> letterEntry
+                  in letters)
+        {
+            Console.WriteLine(
+                  "{0} -> {1}",
+                  letterEntry.Key, letterEntry.Value);
         }
     }
 }
