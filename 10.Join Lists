@@ -5,62 +5,33 @@ class JoinLists
 {
     static void Main()
     {
-        string[]num1 = Console.ReadLine().Split();
-        for (int i = 0; i < num1.Length - 1; i++)
+        List<string> numbersOne = new List<string>();
+        string [] firstNumbers = Console.ReadLine().Split();
+        for (int i = 0; i < firstNumbers.Length; i++)
         {
-            for (int j = i + 1; j < num1.Length; j++)
-            {
-                if (num1[i] == num1[j])
-                {
-                    num1[j] = "\0";
-                }
-            }
+            numbersOne.Add(firstNumbers[i]);
         }
-        List<int> Numbers1 = new List<int>();
-        for (int i = 0; i < num1.Length; i++)
+        List<string> numbersTwo = new List<string>();
+        string[] secondNumbers = Console.ReadLine().Split();
+        for (int i = 0; i < secondNumbers.Length; i++)
         {
-            if (num1[i]=="\0")
-            {
-                continue;
-            }
-            int n = Convert.ToInt32(num1[i]);
-            Numbers1.Add(n);
+            numbersTwo.Add(secondNumbers[i]);
         }
-        string[] num2 = Console.ReadLine().Split();
-        List<int> Numbers2 = new  List<int>();
-        for (int i = 0; i < num2.Length; i++)
-        {
-            int n = Convert.ToInt32(num2[i]);
-            Numbers2.Add(n);
-        }
-        List<int> NumbersCommon = new List<int>();
-        foreach (var item in Numbers1)
-        {
-            if (Numbers2.Contains(item))
+        for (int i = 0; i < firstNumbers.Length; i++)
+	    {
+			if (!numbersTwo.Contains(numbersOne[i]))
             {
-                    continue;
+                numbersTwo.Add(numbersOne[i]);
             }
             else
             {
-                NumbersCommon.Add(item);
-
-            }
-        }
-        foreach (var num in Numbers2)
-        {
-            if (NumbersCommon.Contains(num))
-            {
                 continue;
-            }
-            else
-            {
-                NumbersCommon.Add(num);
-            }
-        }
-        NumbersCommon.Sort();
-        foreach (var item in NumbersCommon)
+            } 
+	    }
+        numbersTwo.Sort();
+        foreach (var item in numbersTwo)
         {
-            Console.Write(item + " ");
+            Console.Write("{0} ", item);
         }
         Console.WriteLine();
     }
