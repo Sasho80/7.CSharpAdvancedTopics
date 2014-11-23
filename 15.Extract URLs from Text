@@ -1,22 +1,16 @@
 using System;
 using System.Text.RegularExpressions;
 
-class ExtractURLsfromText
+class ExtractURLsFromText
 {
     static void Main()
     {
-        Regex linkParser = new Regex(@"\b(?:https?://|www\.)\S+\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        string rawString = Console.ReadLine();
-        foreach (Match m in linkParser.Matches(rawString))
-        Console.WriteLine(m.Value);
+        string text = Console.ReadLine();
+        Regex linkParser = new Regex(@"(?:https?://|www.)\S+\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        foreach (var item in linkParser.Matches(text))
+        {
+            Console.WriteLine(item);
+        }
     }
 }
 
-// \b       -matches a word boundary (spaces, periods..etc)
-// (?:      -define the beginning of a group, the ?: specifies not to capture the data within this group.
-// https?://  - Match http or https (the '?' after the "s" makes it optional)
-// |        -OR
-// www\.    -literal string, match www. (the \. means a literal ".")
-// )        -end group
-// \S+      -match a series of non-whitespace characters.
-// \b       -match the closing word boundary.
