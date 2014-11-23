@@ -5,74 +5,98 @@ class LongestAreaInArray
     static void Main()
     {
         int n = int.Parse(Console.ReadLine());
-        string[] word = new string[n];
+        string[] elements = new string[n];
+        int numberEqualElements = 1;
+        int []arrayRepeatElements = new int[n];
+        int[] startPositionRepeatElement = new int[n];
         for (int i = 0; i < n; i++)
         {
-            word[i]=Console.ReadLine();
+            elements[i] = Console.ReadLine();
         }
-        string longWord = word[0];
-        int []count = new int[n];
-        count[0] = 1;
-        for (int i = 1,j=0; i < n; i++)
+        string refrenceElement = elements[0];
+        int l = 0;
+        startPositionRepeatElement[l] = 0;
+        for (int i = 1,k=0; i < n; i++)
         {
-            if (j==n)
+            if (refrenceElement == elements[i])
             {
+                l++;
+                numberEqualElements++;
+                startPositionRepeatElement[l] = k;
+            }
+            else
+            {
+                if (l>k)
+                {
+                    k = l;  
+                }
+                l++;
+                k++;
+                arrayRepeatElements[i] = numberEqualElements;
+                refrenceElement = elements[i];
+                numberEqualElements = 1;
+                startPositionRepeatElement[l] = k;
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            if (numberEqualElements > arrayRepeatElements[i]||
+                numberEqualElements == elements.Length)
+            {
+                if (i == n - 1)
+                {
+                    Console.WriteLine(numberEqualElements);
+                    for (int j = startPositionRepeatElement[i]; j < n; j++)
+                    {
+                        Console.WriteLine("{0}", elements[j]);
+                    }
+                    break;
+                }
+            }
+            else if (numberEqualElements == arrayRepeatElements[i] && numberEqualElements==1)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if ( refrenceElement.Length>elements[j].Length)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        refrenceElement = elements[j];
+                    }
+                }
+                Console.WriteLine(numberEqualElements);
+                Console.WriteLine(refrenceElement);
                 break;
             }
-            if (longWord==word[i])
+            else if (numberEqualElements == arrayRepeatElements[i] && numberEqualElements>1)
             {
-                count[j] += 1;
-            }
-            else
-            {
-                longWord = word[i];
-                j++;
-                count[j] = 1;
-            }
-        }
-        int lengthCount = count[0];
-        longWord = word[0];
-        for (int j = 0,i=1; j < n; j++,i++)
-        {
-            if (i==n)
-            {
-                break;  
-            }
-            if (lengthCount>=count[j])
-            {
-                continue;
-            }
-            else
-            {
-                lengthCount=count[j];
-                longWord = word[i];
-            }
-        }
-        if (lengthCount>1)
-        {
-            Console.WriteLine(lengthCount);
-            for (int i = 0; i < lengthCount; i++)
-            {
-                Console.WriteLine(longWord);
-            }
-        }
-        else
-        {
-            longWord = word[0];
-            for (int i = 1; i < n; i++)
-            {
-                if (longWord.Length > word[i].Length)
+                Console.WriteLine(arrayRepeatElements[i]);
+                refrenceElement = elements[0];
+                int m = 1;
+                for (; m < n; m++)
                 {
-                    continue;
+                    if (refrenceElement == elements[m])
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        refrenceElement = elements[m];
+                    }
                 }
-                else
+                for (int j = startPositionRepeatElement[m]; j < i; j++)
                 {
-                    longWord = word[i];
+                    Console.WriteLine("{0}", elements[j]);
                 }
+                break;
             }
-            Console.WriteLine(lengthCount);
-            Console.WriteLine(longWord);
         }
     }
 }
 
+
+
+
+ 
