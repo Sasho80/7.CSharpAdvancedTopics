@@ -5,29 +5,28 @@ class CountOfNames
 {
     static void Main()
     {
-        Console.WriteLine("Enter List of names:");
-        string[] listNames = Console.ReadLine().Split();
-        List<string>Names1=new List<string>();
-        foreach (var Name in listNames)
+        string[] word = Console.ReadLine().Split();
+        IDictionary<string, int> words =
+                 new SortedDictionary<string, int>();
+        foreach (string item in word)
         {
-            if (!Names1.Contains(Name))
+            if (string.IsNullOrEmpty(item.Trim()))
             {
-                Names1.Add(Name);
+                continue;
             }
+            int count;
+            if (!words.TryGetValue(item, out count))
+            {
+                count = 0;
+            }
+            words[item] = count + 1;
         }
-        Names1.Sort();
-        Dictionary<string, int> Dict = new Dictionary<string, int>();
-        foreach (string Name in Names1)
+        foreach (KeyValuePair<string, int> itemEntry
+                  in words)
         {
-            Dict[Name] = 0;
-        }
-        foreach (string Name in listNames)
-        {
-            Dict[Name]++;
-        }
-        foreach (var Name in Dict.Keys)
-        {
-            Console.WriteLine("{0}-->{1}",Name,Dict[Name]);
+            Console.WriteLine(
+                  "{0} -> {1}",
+                  itemEntry.Key, itemEntry.Value);
         }
     }
 }
