@@ -1,47 +1,33 @@
 using System;
-using System.Collections.Generic;
 
-class PrimesInGivenRange
+class PrimeChecker
 {
     static void Main()
     {
-        int startNum = int.Parse(Console.ReadLine());
-        int endNum = int.Parse(Console.ReadLine());
-        List <int>Primes=FindPrimesInRange(startNum, endNum);
-        Console.Write(string.Join(", ", Primes));
-        Console.WriteLine();
+        long n = long.Parse(Console.ReadLine());
+        if (n == 0 || n == 1)
+        {
+            Console.WriteLine(false);
+            return;
+        }
+        Console.WriteLine("{0}", CheckPrimeNumber(n));
     }
-    public static List <int> FindPrimesInRange(int n, int m)
+    private static bool CheckPrimeNumber(long n)
     {
-        List<int> primesNum = new List<int>();
-        if (n<0||m<0)
+        int i = 0;
+        bool checkPrime = false;
+        for (i = 1; i <= (int)Math.Sqrt(n); i++)
         {
-            throw new ArgumentOutOfRangeException();
-        }
-        else
-        {
-            for (int i = n; i <=m; i++)
+            if (((i != 1 && i != n) && n % i == 0))
             {
-                bool isPrime = true;
-                if (i==0||i==1)
-                {
-                    continue;
-                }
-                for (int j = 2; j <= Math.Sqrt(i); j++)
-                {
-                    if (i % j == 0 && i != j && i != 2)
-                    {
-                        isPrime = false;
-                        break;
-                    }
-                }     
-                if (isPrime)
-                {
-                     primesNum.Add(i);
-                }
+                checkPrime = false;
+                break;
             }
-            return primesNum;
         }
+        if (i > (int)Math.Sqrt(n))
+        {
+            checkPrime=true;
+        }
+        return checkPrime;
     }
 }
-
