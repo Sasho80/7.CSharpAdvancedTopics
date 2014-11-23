@@ -6,16 +6,17 @@ class SortingNumbers
     static void Main()
     {
         int n = int.Parse(Console.ReadLine());
-        List<int> Numbers = new List<int>();
-        for (int i = 0; i <n; i++)
+        List<int> numbers = new List<int>();
+        for (int i = 0; i < n; i++)
         {
-            int j = int.Parse(Console.ReadLine());
-            Numbers.Add(j);
+            int num = int.Parse(Console.ReadLine());
+            numbers.Add(num);
         }
-        Numbers.Sort();
-        foreach (var item in Numbers)
+        numbers.Sort();
+        Console.WriteLine();
+        foreach (var item in numbers)
         {
-            Console.WriteLine(item);
+            Console.WriteLine("{0}",item);
         }
     }
 }
