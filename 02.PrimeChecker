@@ -5,28 +5,29 @@ class PrimeChecker
     static void Main()
     {
         long n = long.Parse(Console.ReadLine());
-        bool isPrime = true;
-        Console.WriteLine(CheckPrime(isPrime, n));
+        if (n == 0 || n == 1)
+        {
+            Console.WriteLine(false);
+            return;
+        }
+        Console.WriteLine("{0}", CheckPrimeNumber(n));
     }
-    public static bool CheckPrime(bool Prime, long num)
+    private static bool CheckPrimeNumber(long n)
     {
-        if (num == 1 ||num==0)
+        int i = 0;
+        bool checkPrime = false;
+        for (i = 1; i <= (int)Math.Sqrt(n); i++)
         {
-            Prime = false;
-            return Prime;
-        }
-        else 
-        {
-            for (int i = 2; i <= Math.Sqrt(num); i++)
+            if (((i != 1 && i != n) && n % i == 0))
             {
-                if (num % i == 0 && num != i&&num!=2)
-                {
-                    Prime = false;
-                    break;
-                }
+                checkPrime = false;
+                break;
             }
-            return Prime;
         }
+        if (i > (int)Math.Sqrt(n))
+        {
+            checkPrime=true;
+        }
+        return checkPrime;
     }
 }
-
